@@ -83,7 +83,12 @@ def Salary(model, workclass, education, marital_status, occupation, relationship
             scaler = pickle.load(f)
     elif model == 2:
         model_used = "Random Forest"
-        # Add Random Forest model
+        with open('models/best_rf_Salary_Classification.pkl', 'rb') as f:
+            loaded_model = pickle.load(f)
+
+        # Loading the scaler and transform the data
+        with open('models/z-score_scaler_rf_salary_classification.pkl', 'rb') as f:
+            scaler = pickle.load(f)
 
     new_data = {
         'age': age,
@@ -195,7 +200,12 @@ def Health(model, age, sex, bmi, children, smoker, region):
             scaler = pickle.load(f)
     elif model == 2:
         model_used = "Random Forest"
-        # Add Random Forest model
+        with open('models/best_rf_Charges_Classification.pkl', 'rb') as f:
+            loaded_model = pickle.load(f)
+
+        # Loading the scaler and transform the data
+        with open('models/z-score_scaler_rf_charges_classification.pkl', 'rb') as f:
+            scaler = pickle.load(f)
 
     #Inverting the dict to map the 'charges' values back to 'charges' labels
     inverse_mapping_charges = {
